@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+    <div id="app">
+      <input v-model="age" type="text">
+      <p>{{age >= 18 ? 'reşittir' : 'reşit değildir'}}</p>
+  
+      <p>
+        {{ageWriter()}}
+      </p>
+    </hr>
+    <p>{{ ageWriterComp }}</p>
+    <p>
+      {{sayi}}
+    </p>
+    <button
+      @click="sayi++"
+      >
+       Sayiyi arttir
+      </button>
+
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+              age: 0,
+              sayi: 2
+            },
+            // methods are running on every render
+            methods: {
+              ageWriter(v) {
+                console.log("method çalıştı")
+                return  this.age >= 18 ? 'reşittir' : 'reşit değildir';
+              }
+            },
+            // computed are running only its variable changed
+           computed: {
+            ageWriterComp(){
+              console.log("computed çalıştı")
+              return  this.age >= 18 ? 'reşittir' : 'reşit değildir';
+            }
+           },
+            watch: {
+              sayi: function(){
+                console.log("sayi değişti")
+              },
+              age(newValue, oldValue){
+                console.log("age değişti")
+                console.log(newValue, oldValue)
+              }
+            }
+
+        })
+    </script>
+</body>
+</html>

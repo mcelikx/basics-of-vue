@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+    <div id="app">
+        <input v-on:keypress="keypress($event)"  type="text">
+      <button
+      v-on:click="arttir('deneme')"
+      >
+      Arttir
+    </button>
+      <p>{{sayi}}</p>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+               sayi: 0,
+            },
+            methods: {
+              arttir: function(arg){
+                // alert(arg);
+                this.sayi++;
+              }, 
+              arttir2(){
+                this.sayi++;
+              },
+              keypress(e){
+                if(e.keyCode == 13){
+                    this.sayi += parseInt(e.target.value);
+                }
+              }
+            }
+        })
+    </script>
+</body>
+</html>

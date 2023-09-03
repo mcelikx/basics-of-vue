@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border: 5px solid green;
+      }
+      .active{
+        background-color: green;
+        border: 5px solid red;
+      }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+      <div 
+      class="box"
+      :class="{'active': age >= 18}"
+      >
+       
+      </div>
+
+      <div
+      :class="className"
+      >
+        
+      </div>
+      <input v-model="age" type="text">
+      <button @click="age++">Arttır</button>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+              age: 15,
+              sayi: 2
+            },
+            computed: {
+              className(){
+                return {
+                  'active': this.age >= 18,
+                  'box': true
+                }
+              }
+            }
+
+        })
+    </script>
+</body>
+</html>

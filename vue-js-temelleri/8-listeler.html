@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+      ul{
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        list-style-type: none;
+      }
+      li{
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        margin-top: 20px;
+      }
+      li:hover{
+        /* make animation for its scale */
+        transform: scaleY(1.1);
+        /* animate scale up and down endlessly */
+        animation: scale 1s infinite;
+        
+
+      }
+      .green{
+        background-color: green;
+      }
+      .yellow{
+        background-color: yellow;
+      }
+      .red{
+        background-color: red;
+      }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+      <input v-on:keypress.enter="addNewItem($event)" type="text">
+      <ul>
+        <li v-for="item in items" :key="item.id">
+          {{item.id}} - {{item.name}}
+        </li>
+      </ul>
+    </hr>
+    <ul>
+      <li v-for="item in personel" :key="item.id">
+       <strong> {{item.name}}</strong> {{item.surname}}
+      </li>
+    </ul>
+    </hr>
+    Adet: <input type="text" v-model="sellCount">
+    <ul>
+      <li :class="dynamicClass(item)" v-for="item in productList" :key="item.title">
+       <span><strong> {{item.title}}</strong> {{item.price}} - {{item.stock}}</span>
+      
+       <button
+        @click="sellProduct(item)"
+       >Sat (no disabled)</button>
+       <button
+       :disabled="item.stock < sellCount"
+        @click="sellProduct(item)"
+       >Sat</button>
+       <button
+       :disabled="item.stock < sellCount"
+       @click="item.stock = item.stock+sellCount"
+      >Al</button>
+      </li>
+      <p
+      v-if="sellWarning"
+      style="color: red;"
+      >
+        Girdiğiniz miktar stok adetlerinden fazladır
+      </p>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+              sellWarning: false,
+              sellCount: 32,
+             items : [
+               {id: 1, name: 'Elma'},
+               {id: 2, name: 'Armut'},
+               {id: 3, name: 'Karpuz'},
+               {id: 4, name: 'Şeftali'},
+         
+             ],
+             personel: [{
+              name: "Muhammed",
+              surname: "Çelik",
+              age: 25
+             }],
+             productList: [
+              {title: "macbook pro",
+                price: 15000,
+                stock: 42
+              },
+              {title: "macbook air",
+                price: 10000,
+                stock: 120
+              },
+              {title: "windows",
+                price: 5000,
+                stock: 52
+              },
+             ]
+            },
+            methods:{
+              addNewItem(e){
+                this.items.push({id: this.items.length + 5, name: e.target.value});
+              },
+              sellProduct(product) {
+               
+                if(product.stock < this.sellCount){
+                  this.sellWarning = true;
+                } else {
+                  product.stock = product.stock - this.sellCount;
+                  this.sellWarning = false;
+                }
+              },
+              dynamicClass(product){
+                return {
+                  'green': true,
+                  'yellow':  product.stock <= this.sellCount,
+                  'red': product.stock === 0
+                }
+              }
+            },
+            computed: {
+             
+            }
+           
+        })
+    </script>
+</body>
+</html>

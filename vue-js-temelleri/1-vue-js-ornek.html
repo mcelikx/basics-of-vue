@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+    <div id="app">
+        {{ message }}
+        <button
+        @click="message = 'Hello World'"
+            >
+            {{ buttonTitle }}
+        </button>
+        <p>
+            {{ paragraph }}
+        </p>
+        <p v-text="paragraph"></p>
+        <a target="_blank" v-bind:href="link">{{linkTitle}}</a>
+        <p v-html="details"></p>
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                buttonTitle: 'Click Me',
+                paragraph: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+                link: 'https://www.google.com',
+                linkTitle: 'Google Adresine Git',
+                details: '<b>Details</b>'
+            }
+        })
+    </script>
+</body>
+</html>

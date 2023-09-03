@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+
+    <div id="app">
+      <input v-model="sayi" type="text">
+      <p>{{sayi}}</p>
+      <button @click="arttir">Arttır</button>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+               sayi: 1402,
+            },
+            methods: {
+              arttir: function(){
+                this.sayi++;
+              }
+            }
+        })
+    </script>
+</body>
+</html>

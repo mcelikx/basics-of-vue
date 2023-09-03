@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title> VUE Tittle</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+      <p>Bu sayfa açıldığında gösterilecek</p>
+      <button @click="showBoxComp()">Show/Hide Box</button>
+      <p v-show="showBox"> bu butona basılınca gösterilecek</p>
+      <p v-if="showBox"> bu butona basılınca gösterilecek</p>
+      
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+             showBox: false
+            },
+            methods:{
+              showBoxComp(){
+                return this.showBox = !this.showBox;
+              }
+            
+            }
+           
+        })
+    </script>
+</body>
+</html>
